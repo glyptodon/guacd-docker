@@ -21,6 +21,7 @@ RUN yum -y install     \
     libssh2-devel      \
     libtelnet-devel    \
     libtool            \
+    libvorbis-devel    \
     libvncserver-devel \
     make               \
     pango-devel        \
