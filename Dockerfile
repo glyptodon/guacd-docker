@@ -21,15 +21,16 @@ RUN yum -y install     \
     libssh2-devel      \
     libtelnet-devel    \
     libtool            \
-    libuuid-devel      \
     libvncserver-devel \
-    pango-devel
+    pango-devel        \
+    uuid-devel
 
 # Clean up after yum
 RUN yum clean all
 
 # Download and install latest guacamole-server
 RUN \
+     cd /tmp
      git clone https://github.com/glyptodon/guacamole-server   && \
      cd guacamole-server                                       && \
      git checkout 0.9.6                                        && \
@@ -38,6 +39,9 @@ RUN \
      make                                                      && \
      make install                                              && \
      ldconfig
+
+# Remove build after install is complete
+RUN rm -Rf /tmp/guacamole-server
 
 # Start guacd, run by default
 RUN service guacd start
