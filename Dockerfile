@@ -47,6 +47,6 @@ RUN \
 RUN rm -Rf /tmp/guacamole-server
 
 # Start guacd, listening on port 4822
-RUN /usr/local/sbin/guacd -f
 EXPOSE 4822
+CMD [ "/usr/local/sbin/guacd", "-f" ]
 
