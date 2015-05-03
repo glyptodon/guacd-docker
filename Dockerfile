@@ -22,6 +22,7 @@ RUN yum -y install     \
     libtelnet-devel    \
     libtool            \
     libvncserver-devel \
+    make               \
     pango-devel        \
     uuid-devel
 
@@ -30,12 +31,12 @@ RUN yum clean all
 
 # Download and install latest guacamole-server
 RUN \
-     cd /tmp
+     cd /tmp                                                   && \
      git clone https://github.com/glyptodon/guacamole-server   && \
      cd guacamole-server                                       && \
-     git checkout 0.9.6                                        && \
+     git checkout -b docker-build 0.9.6                        && \
      autoreconf -fi                                            && \
-     ./configure --with-init-dir=/etc/init.d                   && \
+     ./configure                                               && \
      make                                                      && \
      make install                                              && \
      ldconfig
@@ -43,10 +44,7 @@ RUN \
 # Remove build after install is complete
 RUN rm -Rf /tmp/guacamole-server
 
-# Start guacd, run by default
-RUN service guacd start
-RUN chkconfig guacd on
-
-# guacd will listen on port 4822
+# Start guacd, listening on port 4822
+RUN /usr/local/sbin/guacd -f
 EXPOSE 4822
 
