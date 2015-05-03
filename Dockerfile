@@ -46,7 +46,7 @@ RUN \
 # Remove build after install is complete
 RUN rm -Rf /tmp/guacamole-server
 
-# Start guacd, listening on port 4822
+# Start guacd, listening on port 0.0.0.0:4822
 EXPOSE 4822
-CMD [ "/usr/local/sbin/guacd", "-f" ]
+CMD [ "/usr/local/sbin/guacd", "-b", "0.0.0.0", "-f" ]
 
