@@ -11,20 +11,21 @@ RUN yum -y update
 RUN yum -y install epel-release
 
 # Install guacamole-server build dependencies
-RUN yum -y install     \
-    autoconf           \
-    automake           \
-    cairo-devel        \
-    freerdp-devel      \
-    gcc                \
-    git                \
-    libssh2-devel      \
-    libtelnet-devel    \
-    libtool            \
-    libvorbis-devel    \
-    libvncserver-devel \
-    make               \
-    pango-devel        \
+RUN yum -y install        \
+    autoconf              \
+    automake              \
+    cairo-devel           \
+    freerdp-devel         \
+    gcc                   \
+    git                   \
+    libssh2-devel         \
+    libtelnet-devel       \
+    libtool               \
+    libvorbis-devel       \
+    libvncserver-devel    \
+    make                  \
+    pango-devel           \
+    pulseaudio-libs-devel \
     uuid-devel
 
 # Clean up after yum
