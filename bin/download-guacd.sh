@@ -1,3 +1,4 @@
+#!/bin/sh -e
 #
 # Copyright (C) 2015 Glyptodon LLC
 #
@@ -21,41 +22,31 @@
 #
 
 #
-# Dockerfile for guacamole-server
+# download-guacd.sh: Downloads and builds guacamole-server.
 #
 
-# Start from CentOS base image
-FROM centos:centos7
-MAINTAINER Michael Jumper <mike.jumper@guac-dev.org>
+VERSION="$1"
+BUILD_DIR="/tmp"
 
-# Version info
-ENV GUAC_VERSION=0.9.6
+#
+# Download latest guacamole-server
+#
 
-# Bring environment up-to-date, install guacamole-server build dependencies
-RUN yum -y update i             && \
-    yum -y install epel-release && \
-    yum -y install            \
-        cairo-devel           \
-        freerdp-devel         \
-        gcc                   \
-        libssh2-devel         \
-        libtelnet-devel       \
-        libvorbis-devel       \
-        libvncserver-devel    \
-        make                  \
-        pango-devel           \
-        pulseaudio-libs-devel \
-        tar                   \
-        uuid-devel              && \
-    yum clean all
+curl -L "http://sourceforge.net/projects/guacamole/files/current/source/guacamole-server-$VERSION.tar.gz" | tar -xz -C "$BUILD_DIR"
 
-# Add configuration scripts
-COPY bin /opt/guacd/bin/
+#
+# Build guacamole-server
+#
 
-# Download and install latest guacamole-server
-RUN /opt/guacd/bin/download-guacd.sh "$GUAC_VERSION"
+cd "$BUILD_DIR/guacamole-server-$VERSION"
+./configure
+make
+make install
+ldconfig
 
-# Start guacd, listening on port 0.0.0.0:4822
-EXPOSE 4822
-CMD [ "/usr/local/sbin/guacd", "-b", "0.0.0.0", "-f" ]
+#
+# Clean up after build
+#
+
+rm -Rf "$BUILD_DIR/guacamole-server-$VERSION"
 
