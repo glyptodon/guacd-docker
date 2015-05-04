@@ -37,6 +37,7 @@ RUN yum -y update i             && \
     yum -y install            \
         cairo-devel           \
         freerdp-devel         \
+        freerdp-plugins       \
         gcc                   \
         libssh2-devel         \
         libtelnet-devel       \
