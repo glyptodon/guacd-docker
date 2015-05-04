@@ -28,6 +28,10 @@
 VERSION="$1"
 BUILD_DIR="/tmp"
 
+where_is_freerdp() {
+    dirname `rpm -ql freerdp-devel | grep 'libfreerdp.*\.so' | head -n1`
+}
+
 #
 # Download latest guacamole-server
 #
@@ -49,4 +53,14 @@ ldconfig
 #
 
 rm -Rf "$BUILD_DIR/guacamole-server-$VERSION"
+
+#
+# Add FreeRDP plugins to proper path
+#
+
+FREERDP_DIR=`where_is_freerdp`
+FREERDP_PLUGIN_DIR="$FREERDP_DIR/freerdp"
+
+mkdir -p "$FREERDP_PLUGIN_DIR"
+ln -s /usr/local/lib/freerdp/*.so "$FREERDP_PLUGIN_DIR"
 
