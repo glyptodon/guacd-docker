@@ -28,45 +28,48 @@
 FROM centos:centos7
 MAINTAINER Michael Jumper <mike.jumper@guac-dev.org>
 
+# Version info
+ENV GUAC_VERSION 0.9.6
+
 # Bring environment up-to-date
 RUN yum -y update
 RUN yum -y install epel-release
 
 # Install guacamole-server build dependencies
 RUN yum -y install        \
-    autoconf              \
-    automake              \
     cairo-devel           \
     freerdp-devel         \
     gcc                   \
-    git                   \
     libssh2-devel         \
     libtelnet-devel       \
-    libtool               \
     libvorbis-devel       \
     libvncserver-devel    \
     make                  \
     pango-devel           \
     pulseaudio-libs-devel \
+    tar                   \
     uuid-devel
 
 # Clean up after yum
 RUN yum clean all
 
-# Download and install latest guacamole-server
+# Download latest guacamole-server
+RUN curl -L \
+    http://sourceforge.net/projects/guacamole/files/current/source/guacamole-server-$GUAC_VERSION.tar.gz \
+    > /tmp/guacamole-server-$GUAC_VERSION.tar.gz
+
+# Build guacamole-server
 RUN \
      cd /tmp                                                   && \
-     git clone https://github.com/glyptodon/guacamole-server   && \
-     cd guacamole-server                                       && \
-     git checkout -b docker-build 0.9.6                        && \
-     autoreconf -fi                                            && \
+     tar -xzf guacamole-server-$GUAC_VERSION.tar.gz            && \
+     cd guacamole-server-$GUAC_VERSION                         && \
      ./configure                                               && \
      make                                                      && \
      make install                                              && \
      ldconfig
 
 # Remove build after install is complete
-RUN rm -Rf /tmp/guacamole-server
+RUN rm -Rf /tmp/guacamole-server*
 
 # Start guacd, listening on port 0.0.0.0:4822
 EXPOSE 4822
