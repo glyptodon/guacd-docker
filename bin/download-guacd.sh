@@ -21,13 +21,24 @@
 # THE SOFTWARE.
 #
 
-#
-# download-guacd.sh: Downloads and builds guacamole-server.
-#
+##
+## @fn download-guacd.sh
+##
+## Downloads and builds the given version of guacamole-server, automatically
+## creating any required symbolic links for the proper loading of FreeRDP
+## plugins.
+##
+## @param VERSION
+##     The version of guacamole-server to download, such as "0.9.6".
+##
 
 VERSION="$1"
 BUILD_DIR="/tmp"
 
+##
+## Locates the directory in which the FreeRDP libraries (.so files) are
+## located, printing the result to STDOUT.
+##
 where_is_freerdp() {
     dirname `rpm -ql freerdp-devel | grep 'libfreerdp.*\.so' | head -n1`
 }
