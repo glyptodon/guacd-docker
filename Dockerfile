@@ -39,6 +39,7 @@ RUN yum -y update i             && \
         freerdp-devel         \
         freerdp-plugins       \
         gcc                   \
+        ghostscript           \
         libssh2-devel         \
         libtelnet-devel       \
         libvorbis-devel       \
