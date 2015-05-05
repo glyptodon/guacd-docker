@@ -33,6 +33,11 @@ within guacd, so allowing access from untrusted applications is dangerous. If
 you need to expose guacd, ensure that you only expose it as absolutely
 necessary, and that only specific trusted applications have access. 
 
+Connecting to guacd from an application
+---------------------------------------
+
+    docker run --name some-app --link some-guacd:guacd -d application-that-uses-guacd
+
 Reporting issues
 ================
 
