@@ -28,26 +28,31 @@
 FROM centos:centos7
 MAINTAINER Michael Jumper <mike.jumper@guac-dev.org>
 
-# Version info
-ENV GUAC_VERSION=0.9.6
+# Environment variables
+ENV \
+    GUAC_VERSION=0.9.6 \
+    LC_ALL=en_US.UTF-8
 
 # Bring environment up-to-date, install guacamole-server build dependencies
 RUN yum -y update i             && \
     yum -y install epel-release && \
-    yum -y install            \
-        cairo-devel           \
-        freerdp-devel         \
-        freerdp-plugins       \
-        gcc                   \
-        ghostscript           \
-        libssh2-devel         \
-        libtelnet-devel       \
-        libvorbis-devel       \
-        libvncserver-devel    \
-        make                  \
-        pango-devel           \
-        pulseaudio-libs-devel \
-        tar                   \
+    yum -y install             \
+        cairo-devel            \
+        dejavu-sans-mono-fonts \
+        freerdp-devel          \
+        freerdp-plugins        \
+        gcc                    \
+        ghostscript            \
+        libssh2-devel          \
+        liberation-mono-fonts  \
+        libtelnet-devel        \
+        libvorbis-devel        \
+        libvncserver-devel     \
+        make                   \
+        pango-devel            \
+        pulseaudio-libs-devel  \
+        tar                    \
+        terminus-fonts         \
         uuid-devel              && \
     yum clean all
 
