@@ -11,7 +11,7 @@ running.
 How to use this image
 =====================
 
-Running guacd for use by the [Guacamole Docker image](https://github.com/glyptodon/guacamole-docker)
+Running guacd for use by the [Guacamole Docker image](https://registry.hub.docker.com/u/glyptodon/guacamole/)
 -----------------------------------------------------
 
     docker run --name some-guacd -d glyptodon/guacd
