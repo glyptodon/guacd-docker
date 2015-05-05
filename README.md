@@ -19,8 +19,8 @@ Running guacd for use by the [Guacamole Docker image](https://github.com/glyptod
 guacd will be listening on port 4822, but this port will only be available to
 Docker containers that have been explicitly linked to `some-guacd`.
 
-Running guacd for use services outside Docker
----------------------------------------------
+Running guacd for use services by outside Docker
+------------------------------------------------
 
     docker run --name some-guacd -d -p 4822:4822 glyptodon/guacd
 
