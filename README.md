@@ -1,17 +1,41 @@
+What is guacd?
+==============
 
-About this Repository
+[guacd](https://github.com/glyptodon/guacamole-server/) is the native
+server-side proxy used by the [Guacamole web
+application](http://guac-dev.org/). If you wish to deploy Guacamole, or an
+application using the [Guacamole core
+APIs](http://guac-dev.org/api-documentation), you will need a copy of guacd
+running.
+
+How to use this image
 =====================
 
-This repository provides a Docker image for the
-[guacamole-server](https://github.com/glyptodon/guacamole-server/) project, the
-core server-side proxy used by the [Guacamole web application](http://guac-dev.org/).
+Running guacd for use by the [Guacamole Docker image](https://github.com/glyptodon/guacamole-docker)
+-----------------------------------------------------
 
-Although intended to become the officially-maintained Docker image for the
-guacamole-server portion of the [Guacamole project](http://guac-dev.org/), this
-is our first adventure into the world of Docker, and is thus experimental. Once
-it proves itself, this will be adopted within the Glyptodon repositories, and
-become part of each Guacamole release, not to mention officially-documented.
+    docker run --name some-guacd -d glyptodon/guacd
 
-Please report any bugs encountered by opening a new issue in the JIRA system
-hosted at: http://glyptodon.org/jira/
+guacd will be listening on port 4822, but this port will only be available to
+Docker containers that have been explicitly linked to `some-guacd`.
+
+Running guacd for use services outside Docker
+---------------------------------------------
+
+    docker run --name some-guacd -d -p 4822:4822 glyptodon/guacd
+
+guacd will be listening on port 4822, and Docker will expose this port on the
+same server hosting Docker. Other services, such as an instance of Tomcat
+running outside of Docker, will be able to connect to guacd.
+
+Beware of the security ramifications of doing this. There is no authentication
+within guacd, so allowing access from untrusted applications is dangerous. If
+you need to expose guacd, ensure that you only expose it as absolutely
+necessary, and that only specific trusted applications have access. 
+
+Reporting issues
+================
+
+Please report any bugs encountered by opening a new issue in [our
+JIRA](http://glyptodon.org/jira/).
 
