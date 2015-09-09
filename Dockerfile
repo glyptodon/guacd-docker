@@ -30,7 +30,7 @@ MAINTAINER Michael Jumper <mike.jumper@guac-dev.org>
 
 # Environment variables
 ENV \
-    GUAC_VERSION=0.9.7 \
+    GUAC_VERSION=0.9.8 \
     LC_ALL=en_US.UTF-8
 
 # Bring environment up-to-date, install guacamole-server build dependencies
@@ -43,6 +43,7 @@ RUN yum -y update i             && \
         freerdp-plugins        \
         gcc                    \
         ghostscript            \
+        libjpeg-turbo-devel    \
         libssh2-devel          \
         liberation-mono-fonts  \
         libtelnet-devel        \

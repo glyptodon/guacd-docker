@@ -2,11 +2,10 @@ What is guacd?
 ==============
 
 [guacd](https://github.com/glyptodon/guacamole-server/) is the native
-server-side proxy used by the [Guacamole web
-application](http://guac-dev.org/). If you wish to deploy Guacamole, or an
-application using the [Guacamole core
-APIs](http://guac-dev.org/api-documentation), you will need a copy of guacd
-running.
+server-side proxy used by the [Guacamole web application](http://guac-dev.org/).
+If you wish to deploy Guacamole, or an application using the
+[Guacamole core APIs](http://guac-dev.org/api-documentation), you will need a
+copy of guacd running.
 
 How to use this image
 =====================
@@ -41,6 +40,6 @@ Connecting to guacd from an application
 Reporting issues
 ================
 
-Please report any bugs encountered by opening a new issue in [our
-JIRA](http://glyptodon.org/jira/).
+Please report any bugs encountered by opening a new issue in
+[our JIRA](http://glyptodon.org/jira/).
 
