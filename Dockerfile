@@ -30,7 +30,7 @@ MAINTAINER Michael Jumper <mike.jumper@guac-dev.org>
 
 # Environment variables
 ENV \
-    GUAC_VERSION=0.9.8 \
+    GUAC_VERSION=0.9.9 \
     LC_ALL=en_US.UTF-8
 
 # Bring environment up-to-date, install guacamole-server build dependencies
@@ -49,6 +49,7 @@ RUN yum -y update i             && \
         libtelnet-devel        \
         libvorbis-devel        \
         libvncserver-devel     \
+        libwebp-devel          \
         make                   \
         pango-devel            \
         pulseaudio-libs-devel  \
