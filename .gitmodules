@@ -1,0 +1,3 @@
+[submodule "guacamole-server"]
+	path = guacamole-server
+	url = https://github.com/glyptodon/guacamole-server.git
